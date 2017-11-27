@@ -1,0 +1,10 @@
+com\rakib\model\Role.class
+handler\UserManageMB.class
+handler\LoginBM.class
+com\rakib\doa\UserManageDao.class
+com\rakib\model\User.class
+com\rakib\doa\UserDao.class
+com\rakib\util\NewHibernateUtil.class
+com\rakib\model\Project.class
+com\rakib\model\Userrole.class
+handler\RegistrationMB.class

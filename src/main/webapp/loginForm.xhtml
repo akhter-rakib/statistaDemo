@@ -19,17 +19,19 @@
             <div class="form-group">
                 <h:outputLabel for="email" class="control-label col-sm-4">Email</h:outputLabel>
                 <div class="col-sm-4">
-                    <h:inputText id="email-id" value="#{loginBM.email}" class="form-control" validatorMessage="Email Id is required">
+                    <h:inputText id="email" value="#{loginBM.email}" class="form-control" validatorMessage="Email Id is required">
                         <f:validateRequired/>
                     </h:inputText>
+                    <h:message for="email"/>
                 </div>
             </div>
             <div class="form-group">
                 <h:outputLabel for="password" class="control-label col-sm-4">password</h:outputLabel>
                 <div class="col-sm-4">
-                    <h:inputSecret id="password-id" value="#{loginBM.password}" class="form-control" validatorMessage="email is required">
+                    <h:inputSecret id="password" value="#{loginBM.password}" class="form-control" validatorMessage="Password is required">
                         <f:validateRequired/>
                     </h:inputSecret>
+                    <h:message for="password"/>
                 </div>
             </div>
             <div class="form-group">

@@ -17,7 +17,7 @@
             </div>
             <hr/>
             <div class="form-group">
-                <h:outputLabel for="firstname" class="control-label col-sm-4">First Name</h:outputLabel>
+                <h:outputLabel  class="control-label col-sm-4">First Name</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputText id="firstname" value="#{registrationMB.firstname}" class="form-control" required="true"
                                  requiredMessage="first Name is mandatory">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <h:outputLabel for="lastname" class="control-label col-sm-4">Last Name</h:outputLabel>
+                <h:outputLabel class="control-label col-sm-4">Last Name</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputText id="lastname" value="#{registrationMB.lastname}" class="form-control" validatorMessage="Last Name is mandatory">
                         <f:validateRequired/>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <h:outputLabel for="email" class="control-label col-sm-4">Email</h:outputLabel>
+                <h:outputLabel  class="control-label col-sm-4">Email</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputText id="email" value="#{registrationMB.email}" class="form-control" validatorMessage="Email Id is required">
                         <f:validateRequired/>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <h:outputLabel for="password" class="control-label col-sm-4">password</h:outputLabel>
+                <h:outputLabel  class="control-label col-sm-4">password</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputSecret id="password" value="#{registrationMB.password}" class="form-control" validatorMessage="password is required">
                         <f:validateRequired/>

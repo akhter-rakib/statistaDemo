@@ -17,7 +17,7 @@
             </div>
             <hr/>
             <div class="form-group">
-                <h:outputLabel class="control-label col-sm-4">Email</h:outputLabel>
+                <h:outputLabel for="email" class="control-label col-sm-4">Email</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputText id="email" value="#{loginBM.email}" class="form-control" validatorMessage="Email Id is required">
                         <f:validateRequired/>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <h:outputLabel class="control-label col-sm-4">password</h:outputLabel>
+                <h:outputLabel for="password" class="control-label col-sm-4">password</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputSecret id="password" value="#{loginBM.password}" class="form-control" validatorMessage="Password is required">
                         <f:validateRequired/>

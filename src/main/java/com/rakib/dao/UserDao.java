@@ -5,6 +5,7 @@
  */
 package com.rakib.dao;
 
+import com.rakib.model.Role;
 import com.rakib.model.User;
 import com.rakib.util.NewHibernateUtil;
 import java.util.List;
@@ -64,4 +65,11 @@ public class UserDao {
         }
         return user;
     }
+
+    public List<Role> getRoles() {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Role.class);
+        return criteria.list();
+    }
+
 }

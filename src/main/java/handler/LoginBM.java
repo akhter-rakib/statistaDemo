@@ -8,8 +8,12 @@ package handler;
 import com.rakib.dao.UserDao;
 import com.rakib.model.User;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.HttpSession;
+import javax.faces.context.FacesContext;
+import session.SessionUtils;
 
 /**
  *
@@ -41,13 +45,15 @@ public class LoginBM {
     public String login() {
         UserDao userDao = new UserDao();
         User user = userDao.loginUser(email, password);
-        System.out.println("****************************"+user.getPassword());
-        if(user!=null){
-            System.out.println("***********************"+user.getEmail());
-        }else{
-            
+        if (user != null) {
+            HttpSession session = SessionUtils.getSession();
+            session.setAttribute("user", user);
+            return "success?faces-redirect=true";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Incorrect Email and Passowrd", "Please enter correct Email and Password"));
+            return "loginForm?faces-redirect=true";
         }
-        return null;
+
     }
 
     public LoginBM() {

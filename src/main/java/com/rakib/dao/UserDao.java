@@ -49,7 +49,7 @@ public class UserDao {
             criteria.add(Restrictions.eq("email", email));
             criteria.add(Restrictions.eq("password", password));
             List list = criteria.list();
-
+                System.out.println("*******************"+email);
             if ((list != null) && (list.size() > 0)) {
                 // userFound = true;
                 user = (User) criteria.list().get(0);

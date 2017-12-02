@@ -5,7 +5,7 @@
  */
 package handler;
 
-import com.rakib.doa.UserManageDao;
+import com.rakib.dao.UserManageDao;
 import com.rakib.model.User;
 import java.io.Serializable;
 import java.util.List;

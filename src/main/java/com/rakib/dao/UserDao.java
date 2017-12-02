@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rakib.doa;
+package com.rakib.dao;
 
 import com.rakib.model.User;
 import com.rakib.util.NewHibernateUtil;
@@ -37,8 +37,9 @@ public class UserDao {
         }
     }
 
-    public boolean loginUser(String email, String password) {
-        boolean userFound = false;
+    public User loginUser(String email, String password) {
+        //  boolean userFound = false;
+        User user = null;
         Transaction tx = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
@@ -47,8 +48,10 @@ public class UserDao {
             criteria.add(Restrictions.eq("email", email));
             criteria.add(Restrictions.eq("password", password));
             List list = criteria.list();
+
             if ((list != null) && (list.size() > 0)) {
-                userFound = true;
+                // userFound = true;
+                user = (User) criteria.list().get(0);
             }
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -59,6 +62,6 @@ public class UserDao {
             session.flush();
             session.close();
         }
-        return userFound;
+        return user;
     }
 }

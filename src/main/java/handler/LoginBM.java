@@ -5,7 +5,7 @@
  */
 package handler;
 
-import com.rakib.doa.UserDao;
+import com.rakib.dao.UserDao;
 import com.rakib.model.User;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -40,7 +40,13 @@ public class LoginBM {
 
     public String login() {
         UserDao userDao = new UserDao();
-        boolean userExist = userDao.loginUser(email, password);
+        User user = userDao.loginUser(email, password);
+        System.out.println("****************************"+user.getPassword());
+        if(user!=null){
+            System.out.println("***********************"+user.getEmail());
+        }else{
+            
+        }
         return null;
     }
 

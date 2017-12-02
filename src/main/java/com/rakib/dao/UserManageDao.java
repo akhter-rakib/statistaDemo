@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rakib.doa;
+package com.rakib.dao;
 
 import com.rakib.model.User;
 import com.rakib.util.NewHibernateUtil;

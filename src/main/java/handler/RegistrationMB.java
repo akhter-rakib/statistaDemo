@@ -89,7 +89,8 @@ public class RegistrationMB implements Serializable {
 
     public String saveUser() {
         UserDao userDao = new UserDao();
-        User user = new User(getFirstname(), getLastname(), getEmail(), getPassword(),getProjects(),getUserroles());
+        System.out.println("*******************MB*******************"+getFirstname());
+        User user = new User(getFirstname(), getLastname(), getEmail(), getPassword());
         userDao.SaveUser(user);
         return "loginForm";
     }

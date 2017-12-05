@@ -6,19 +6,24 @@
 package com.rakib.dao;
 
 import com.rakib.model.User;
-import com.rakib.util.NewHibernateUtil;
+//import com.rakib.util.NewHibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Rakib
  */
 public class UserManageDao {
+    private SessionFactory sessionFactory;
+ public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     public List<User> allRegisteredUsers() {
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.getCurrentSession();
         List<User> list = null;
         String hql = "from User";
         Query query = session.createQuery(hql);
@@ -28,7 +33,7 @@ public class UserManageDao {
     }
 
     public User editUser(int id) {
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.getCurrentSession();
         User user=new User();
         session.beginTransaction();
         user = (User) session.get(User.class, id);

@@ -6,7 +6,7 @@
 package com.rakib.dao;
 
 import com.rakib.model.Role;
-import com.rakib.model.User;
+import com.rakib.model.UserForm;
 import com.rakib.util.NewHibernateUtil;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserDao {
 
  
-    public void SaveUser(User user) {
+    public void SaveUser(UserForm user) {
         SessionFactory sessionFactory = NewHibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -48,21 +48,21 @@ public class UserDao {
         System.out.println("******************Done*****************");
     }
 
-    public User loginUser(String email, String password) {
+    public UserForm loginUser(String email, String password) {
         //  boolean userFound = false;
-        User user = null;
+        UserForm user = null;
         Transaction tx = null;
        Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             tx = session.beginTransaction();
-            Criteria criteria = session.createCriteria(User.class);
+            Criteria criteria = session.createCriteria(UserForm.class);
             criteria.add(Restrictions.eq("email", email));
             criteria.add(Restrictions.eq("password", password));
             List list = criteria.list();
             System.out.println("*******************" + email);
             if ((list != null) && (list.size() > 0)) {
                 // userFound = true;
-                user = (User) criteria.list().get(0);
+                user = (UserForm) criteria.list().get(0);
             }
             session.getTransaction().commit();
         } catch (Exception e) {

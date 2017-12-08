@@ -24,7 +24,7 @@ public class Project implements java.io.Serializable {
     private Integer id;
     private String projectName;
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Userrole> userRoles;
+    private Set<UserRole> userRoles;
 
     public Project() {
     }
@@ -45,11 +45,11 @@ public class Project implements java.io.Serializable {
         this.projectName = projectName;
     }
 
-    public Set<Userrole> getUserRoles() {
+    public Set<UserRole> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(Set<Userrole> userRoles) {
+    public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 

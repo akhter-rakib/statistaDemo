@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class User implements java.io.Serializable {
+public class UserForm  implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,12 +25,12 @@ public class User implements java.io.Serializable {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Userrole> userRoles;
+    private Set<UserRole> userRoles;
 
-    public User() {
+    public UserForm() {
     }
 
-    public User(String firstname, String lastname, String email, String password) {
+    public UserForm(String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -77,11 +77,11 @@ public class User implements java.io.Serializable {
         this.password = password;
     }
 
-    public Set<Userrole> getUserRoles() {
+    public Set<UserRole> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(Set<Userrole> userRoles) {
+    public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 

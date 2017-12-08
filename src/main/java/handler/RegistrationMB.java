@@ -7,8 +7,9 @@ package handler;
 
 import com.rakib.dao.UserDao;
 import com.rakib.model.Project;
-import com.rakib.model.User;
-import com.rakib.model.Userrole;
+import com.rakib.model.Role;
+import com.rakib.model.UserForm;
+import com.rakib.model.UserRole;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class RegistrationMB implements Serializable {
     private String email;
     private String password;
     private Set<Project> projects = new HashSet<Project>(0);
-    private Set<Userrole> userroles = new HashSet<Userrole>(0);
+    private Set<UserRole> userroles = new HashSet<UserRole>(0);
 
     public Set<Project> getProjects() {
         return projects;
@@ -39,11 +40,11 @@ public class RegistrationMB implements Serializable {
         this.projects = projects;
     }
 
-    public Set<Userrole> getUserroles() {
+    public Set<UserRole> getUserroles() {
         return userroles;
     }
 
-    public void setUserroles(Set<Userrole> userroles) {
+    public void setUserroles(Set<UserRole> userroles) {
         this.userroles = userroles;
     }
 
@@ -89,8 +90,10 @@ public class RegistrationMB implements Serializable {
 
     public String saveUser() {
         UserDao userDao = new UserDao();
-        System.out.println("*******************MB*******************"+getFirstname());
-        User user = new User(getFirstname(), getLastname(), getEmail(), getPassword());
+        UserForm user = new UserForm(getFirstname(), getLastname(), getEmail(), getPassword());
+        Set<UserRole> userroles=new HashSet<>();
+        userroles.add(new UserRole(new Role(2),user));
+        user.setUserRoles(userroles);
         userDao.SaveUser(user);
         return "loginForm";
     }

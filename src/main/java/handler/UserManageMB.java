@@ -6,7 +6,7 @@
 package handler;
 
 import com.rakib.dao.UserManageDao;
-import com.rakib.model.User;
+import com.rakib.model.UserForm;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -21,22 +21,21 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class UserManageMB implements Serializable{
+public class UserManageMB implements Serializable {
 
     private Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 
-    public List<User> userList() {
+    public List<UserForm> userList() {
         UserManageDao userManageDao = new UserManageDao();
-        List<User> users = userManageDao.allRegisteredUsers();
+        List<UserForm> users = userManageDao.allRegisteredUsers();
         return users;
     }
-    
-   public String edit(int userId) {
-        System.out.println("*********************"+userId);
+
+    public String edit(int userId) {
         UserManageDao userManageDao = new UserManageDao();
-        User editUser = userManageDao.editUser(userId);
-        System.out.println("**************"+editUser.getEmail());
-         System.out.println("**************"+editUser.getFirstname());
+        UserForm editUser = userManageDao.editUser(userId);
+        System.out.println("**************" + editUser.getEmail());
+        System.out.println("**************" + editUser.getFirstname());
         sessionMap.put("editUser", editUser);
         return "edit";
     }

@@ -6,7 +6,9 @@
 package handler;
 
 import com.rakib.dao.UserDao;
-import com.rakib.model.User;
+import com.rakib.model.UserForm;
+import com.rakib.model.UserRole;
+import java.util.Iterator;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -44,8 +46,13 @@ public class LoginBM {
 
     public String login() {
         UserDao userDao = new UserDao();
-        User user = userDao.loginUser(email, password);
+        UserForm user = userDao.loginUser(email, password);
         if (user != null) {
+            Iterator<UserRole> iterator = user.getUserRoles().iterator();
+            while (iterator.hasNext()) {
+                UserRole roleType = iterator.next();
+                System.out.println("************************" + roleType.getRole().getRoleType());
+            }
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("user", user);
             return "success?faces-redirect=true";

@@ -7,10 +7,10 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/salebase2?zeroDateTimeBehavior=convertToNull</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">mysql123</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
-        <mapping class="com.rakib.model.User"></mapping>
-        <mapping class="com.rakib.model.Userrole"></mapping>
+        <mapping class="com.rakib.model.UserForm"></mapping>
+        <mapping class="com.rakib.model.UserRole"></mapping>
         <mapping class="com.rakib.model.Role"></mapping>
         <mapping class="com.rakib.model.Project"></mapping>
     </session-factory>

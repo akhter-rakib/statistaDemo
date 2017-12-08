@@ -25,9 +25,13 @@ public class Role implements java.io.Serializable {
     private String roleType;
     private String description;
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Userrole> userRoles;
+    private Set<UserRole> userRoles;
 
     public Role() {
+    }
+
+    public Role(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {
@@ -54,11 +58,11 @@ public class Role implements java.io.Serializable {
         this.description = description;
     }
 
-    public Set<Userrole> getUserRoles() {
+    public Set<UserRole> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(Set<Userrole> userRoles) {
+    public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 

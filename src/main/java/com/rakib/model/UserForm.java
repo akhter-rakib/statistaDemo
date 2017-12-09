@@ -11,16 +11,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 @Table(name = "user")
-public class UserForm  implements java.io.Serializable {
+public class UserForm implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String firstname;
     private String lastname;
+    @Email(message = "your email is not right formatted")
     private String email;
     private String password;
 

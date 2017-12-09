@@ -31,13 +31,17 @@ public class UserManageMB implements Serializable {
         return users;
     }
 
-    public String edit(int userId) {
+    public String edit(Integer userId) {
         UserManageDao userManageDao = new UserManageDao();
         UserForm editUser = userManageDao.editUser(userId);
-        System.out.println("**************" + editUser.getEmail());
-        System.out.println("**************" + editUser.getFirstname());
         sessionMap.put("editUser", editUser);
         return "edit";
+    }
+
+    public String updateUser(UserForm userForm) {
+        UserManageDao userManageDao = new UserManageDao();
+        userManageDao.updateUser(userForm);
+        return "";
     }
 
 }

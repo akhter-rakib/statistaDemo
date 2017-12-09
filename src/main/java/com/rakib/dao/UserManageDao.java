@@ -5,40 +5,48 @@
  */
 package com.rakib.dao;
 
+import com.rakib.model.Role;
 import com.rakib.model.UserForm;
+import com.rakib.util.NewHibernateUtil;
 //import com.rakib.util.NewHibernateUtil;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author Rakib
  */
 public class UserManageDao {
-    private SessionFactory sessionFactory;
- public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     public List<UserForm> allRegisteredUsers() {
-        Session session = sessionFactory.getCurrentSession();
-        List<UserForm> list = null;
-        String hql = "from User";
-        Query query = session.createQuery(hql);
-        list = query.list();
-        session.close();
-        return list;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(UserForm.class);
+        return criteria.list();
     }
 
-    public UserForm editUser(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        UserForm user=new UserForm();
-        session.beginTransaction();
-        user = (UserForm) session.get(UserForm.class, id);
-        session.getTransaction().commit();
-        return user;
+    public UserForm editUser(Integer id) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(UserForm.class);
+        criteria.add(Restrictions.eq("id", id));
+        return (UserForm) criteria.uniqueResult();
+    }
+
+    public List<Role> getRoles() {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Role.class);
+        return criteria.list();
+    }
+
+    public void updateUser(UserForm user) {
+        NewHibernateUtil.getSessionFactory().getCurrentSession().merge(user);
+    }
+
+    public void deleteUser(UserForm user) {
+
     }
 
 }

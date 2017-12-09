@@ -48,14 +48,19 @@ public class LoginBM {
         UserDao userDao = new UserDao();
         UserForm user = userDao.loginUser(email, password);
         if (user != null) {
+            HttpSession session = SessionUtils.getSession();
+            session.setAttribute("user", user);
             Iterator<UserRole> iterator = user.getUserRoles().iterator();
             while (iterator.hasNext()) {
                 UserRole roleType = iterator.next();
-                System.out.println("************************" + roleType.getRole().getRoleType());
+                if (roleType.getRole().getRoleType().equalsIgnoreCase("user")) {
+
+                } else {
+
+                }
             }
-            HttpSession session = SessionUtils.getSession();
-            session.setAttribute("user", user);
-            return "success?faces-redirect=true";
+
+            return "usermanagement?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Incorrect Email and Passowrd", "Please enter correct Email and Password"));
             return "loginForm?faces-redirect=true";
@@ -63,7 +68,10 @@ public class LoginBM {
 
     }
 
-    public LoginBM() {
-    }
+    public String logout() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return "/loginForm.xhtml?faces-redirect=true";
 
+    }
 }

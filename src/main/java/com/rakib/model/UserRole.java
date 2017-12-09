@@ -70,5 +70,6 @@ public class UserRole implements java.io.Serializable {
     public void setUser(UserForm user) {
         this.user = user;
     }
+    ///
 
 }

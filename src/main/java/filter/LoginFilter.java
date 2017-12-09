@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package filter;
 
 import java.io.IOException;
@@ -24,27 +19,27 @@ public class LoginFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws ServletException, IOException {    
         HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
-        HttpSession session = request.getSession(false);
-        boolean loggedIn = (session != null) ? session.getAttribute(IConstants.HAS_USER_ID) != null : false;
-        String loginURL = request.getContextPath() + "/faces/jsp/login.jsp";
+    HttpServletResponse response = (HttpServletResponse) res;
+    HttpSession session = request.getSession(false);
+    boolean loggedIn = (session != null) ? session.getAttribute("user") != null : false;
+    String loginURL = request.getContextPath() + "/loginForm.xhtml"; 
 
-        if (!loggedIn && !request.getRequestURI().equals(loginURL)) {
-            response.sendRedirect(loginURL);
-        } else {
-            chain.doFilter(request, response);
-        }
+    if (!loggedIn && !request.getRequestURI().equals(loginURL)) {       
+        response.sendRedirect(loginURL);
+    } else {
+        chain.doFilter(request, response);
+    }
     }
 
     @Override
     public void destroy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }
